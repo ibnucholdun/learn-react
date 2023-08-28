@@ -34,11 +34,15 @@ const Body = (props) => {
 };
 
 const Footer = (props) => {
-  const { price } = props;
+  const { price, handleAddToCart, id } = props;
   return (
     <div className="flex items-center justify-between px-5 pb-5">
-      <span className="text-xl font-bold text-white">{price}</span>
-      <Button classname="bg-blue-500">Add To Chart</Button>
+      <span className="text-xl font-bold text-white">
+        {price.toLocaleString("id-ID", { style: "currency", currency: "IDR" })}
+      </span>
+      <Button classname="bg-blue-500" onClick={() => handleAddToCart(id)}>
+        Add To Chart
+      </Button>
     </div>
   );
 };
