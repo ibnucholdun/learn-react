@@ -8,3 +8,13 @@ export const getProducts = async () => {
     console.log(error);
   }
 };
+
+export const getDetailProduct = async (id) => {
+  try {
+    const { data } = await axios.get(`https://fakestoreapi.com/products/${id}`);
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
