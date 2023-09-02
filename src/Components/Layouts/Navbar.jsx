@@ -3,12 +3,14 @@ import { useLogin } from "../../Hooks/useLogin";
 import Button from "../Elements/Button/Index";
 import { useSelector } from "react-redux";
 import { DarkMode } from "../../Context/DarkMode";
+import { useTotalPrice } from "../../Hooks/useTotalPrice";
 
 const Navbar = () => {
   const username = useLogin();
   const [totalCart, setTotalCart] = useState(0);
   const cart = useSelector((state) => state.cart.data);
   const [isDarkMode, setIsDarkMode] = useContext(DarkMode);
+  const { total } = useTotalPrice();
 
   useEffect(() => {
     const sum = cart.reduce((acc, item) => {
@@ -29,7 +31,8 @@ const Navbar = () => {
         Logout
       </Button>
       <div className="flex items-center bg-gray-800 p-2 rounded-md ml-5 mr-5">
-        {totalCart}
+        Item : {totalCart} | Price :{" "}
+        {total.toLocaleString("id-ID", { style: "currency", currency: "USD" })}
       </div>
       <Button
         classname=" bg-black px-10 mx-5 text-white rounded"
